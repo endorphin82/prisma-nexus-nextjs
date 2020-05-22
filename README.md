@@ -1,0 +1,1 @@
+# prisma-nexus-nextjs
