@@ -1,0 +1,27 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url = "***"
+}
+
+model albums {
+  id   Int     @default(autoincrement()) @id
+  name String
+  year String?
+}
+
+model artists {
+  id   Int     @default(autoincrement()) @id
+  name String
+  url  String?
+}
+
+model artists_albums {
+  album_id  Int?
+  artist_id Int?
+  createdAt DateTime?
+  id        Int       @default(autoincrement()) @id
+}
