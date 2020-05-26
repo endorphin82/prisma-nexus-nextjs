@@ -23,7 +23,7 @@ export const initOnContext = ctx => {
     if (inAppContext) {
       console.warn(
         'Warning: You have opted-out of Automatic Static Optimization due to `withApollo` in `pages/_app`.\n' +
-          'Read more: https://err.sh/next.js/opt-out-auto-static-optimization\n'
+        'Read more: https://err.sh/next.js/opt-out-auto-static-optimization\n'
       )
     }
   }
@@ -167,7 +167,7 @@ export const withApollo = ({ ssr = false } = {}) => PageComponent => {
         apolloState: apolloClient.cache.extract(),
         // Provide the client for ssr. As soon as this payload
         // gets JSON.stringified it will remove itself.
-        apolloClient: ctx.apolloClient,
+        apolloClient: ctx.apolloClient
       }
     }
   }

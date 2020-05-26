@@ -22,12 +22,13 @@ model Artist {
 }
 
 model ArtistAlbum {
-  album_id  Int
-  artist_id Int
-  createdAt DateTime @default(now())
-  Album     Album    @relation(fields: [album_id], references: [id])
-  Artist    Artist   @relation(fields: [artist_id], references: [id])
+  album_id  Int?
+  artist_id Int?
+  createdAt DateTime?
+  id        Int       @default(autoincrement()) @id
+  Album     Album?    @relation(fields: [album_id], references: [id])
+  Artist    Artist?   @relation(fields: [artist_id], references: [id])
 
-  @@id([album_id, artist_id])
-  @@index([artist_id], name: "artist_id")
+  @@index([album_id], name: "fk_albums")
+  @@index([artist_id], name: "fk_artists")
 }

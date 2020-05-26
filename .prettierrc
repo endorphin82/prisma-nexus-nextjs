@@ -1,4 +1,5 @@
 {
   "semi": false,
-  "bracketSpacing": true
+  "bracketSpacing": true,
+  "singleQuote": true
 }

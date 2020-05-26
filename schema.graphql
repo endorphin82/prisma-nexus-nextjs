@@ -3,7 +3,6 @@
 
 
 type Album {
-  artists: [Album!]!
   id: Int!
   name: String!
   year: String
@@ -14,17 +13,12 @@ input AlbumWhereUniqueInput {
 }
 
 type Artist {
-  albums: [Album!]!
   id: Int!
   name: String!
   url: String
 }
 
-type ArtistAlbum {
-  Album: Album
-  Artist: Artist
-  id: Int!
-}
+type ArtistAlbum
 
 type Query {
   albums: [Album!]!

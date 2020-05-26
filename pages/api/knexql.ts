@@ -8,7 +8,7 @@ const db = knex({
   connection: {
     host: "localhost",
     user: "root",
-    password: "rootpassword",
+    password: "root",
     database: "media"
   }
 })
