@@ -36,7 +36,7 @@ export default function AlbumsList() {
       <ul>
         {albums.map((album, index) => (
           <li key={album.id}>
-              <h4>{album.id }. {album.name}</h4>
+              <h4 onClick={()=> console.log("test")}>{album.id }. {album.name}</h4>
               <ul>
                {/* {artist.albums.map((album, index) =>*/}
                {/*  <li key={artist.id+index}>{album.name }{' '}{album.year } </li>*/}

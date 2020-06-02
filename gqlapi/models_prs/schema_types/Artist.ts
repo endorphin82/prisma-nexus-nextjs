@@ -1,4 +1,4 @@
-import { objectType } from "@nexus/schema"
+import { objectType } from '@nexus/schema'
 
 export const Artist = objectType({
   name: 'Artist',
@@ -7,5 +7,5 @@ export const Artist = objectType({
     t.model.name()
     t.model.url()
     t.model.albums()
-  },
+  }
 })

@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Album {
+  id          Int           @default(autoincrement()) @id
+  name        String
+  year        String?
+  artists     Artist[]      @relation(name: "ArtistAlbum")
+}
+
+model Artist {
+  id          Int           @default(autoincrement()) @id
+  name        String
+  url         String?
+  albums      Album[]      @relation(name: "ArtistAlbum")
+}
+
+model ArtistAlbum {
+  album_id  Int
+  artist_id Int
+  createdAt DateTime @default(now())
+  id        Int      @default(autoincrement()) @id
+  Album     Album    @relation(fields: [album_id], references: [id])
+  Artist    Artist   @relation(fields: [artist_id], references: [id])
+
+  @@index([album_id], name: "album_id")
+  @@index([artist_id], name: "artist_id")
+}

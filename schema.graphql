@@ -3,9 +3,106 @@
 
 
 type Album {
+  artist: Artist
   id: Int!
   name: String!
   year: String
+}
+
+input AlbumCreateInput {
+  artist: ArtistCreateOneWithoutAlbumsInput
+  name: String!
+  year: String
+}
+
+input AlbumCreateManyWithoutArtistInput {
+  connect: [AlbumWhereUniqueInput!]
+  create: [AlbumCreateWithoutArtistInput!]
+}
+
+input AlbumCreateWithoutArtistInput {
+  name: String!
+  year: String
+}
+
+input AlbumFilter {
+  every: AlbumWhereInput
+  none: AlbumWhereInput
+  some: AlbumWhereInput
+}
+
+input AlbumScalarWhereInput {
+  AND: [AlbumScalarWhereInput!]
+  artist_id: NullableIntFilter
+  id: IntFilter
+  name: StringFilter
+  NOT: [AlbumScalarWhereInput!]
+  OR: [AlbumScalarWhereInput!]
+  year: NullableStringFilter
+}
+
+input AlbumUpdateInput {
+  artist: ArtistUpdateOneWithoutAlbumsInput
+  id: Int
+  name: String
+  year: String
+}
+
+input AlbumUpdateManyDataInput {
+  id: Int
+  name: String
+  year: String
+}
+
+input AlbumUpdateManyMutationInput {
+  id: Int
+  name: String
+  year: String
+}
+
+input AlbumUpdateManyWithoutArtistInput {
+  connect: [AlbumWhereUniqueInput!]
+  create: [AlbumCreateWithoutArtistInput!]
+  delete: [AlbumWhereUniqueInput!]
+  deleteMany: [AlbumScalarWhereInput!]
+  disconnect: [AlbumWhereUniqueInput!]
+  set: [AlbumWhereUniqueInput!]
+  update: [AlbumUpdateWithWhereUniqueWithoutArtistInput!]
+  updateMany: [AlbumUpdateManyWithWhereNestedInput!]
+  upsert: [AlbumUpsertWithWhereUniqueWithoutArtistInput!]
+}
+
+input AlbumUpdateManyWithWhereNestedInput {
+  data: AlbumUpdateManyDataInput!
+  where: AlbumScalarWhereInput!
+}
+
+input AlbumUpdateWithoutArtistDataInput {
+  id: Int
+  name: String
+  year: String
+}
+
+input AlbumUpdateWithWhereUniqueWithoutArtistInput {
+  data: AlbumUpdateWithoutArtistDataInput!
+  where: AlbumWhereUniqueInput!
+}
+
+input AlbumUpsertWithWhereUniqueWithoutArtistInput {
+  create: AlbumCreateWithoutArtistInput!
+  update: AlbumUpdateWithoutArtistDataInput!
+  where: AlbumWhereUniqueInput!
+}
+
+input AlbumWhereInput {
+  AND: [AlbumWhereInput!]
+  artist: ArtistWhereInput
+  artist_id: NullableIntFilter
+  id: IntFilter
+  name: StringFilter
+  NOT: [AlbumWhereInput!]
+  OR: [AlbumWhereInput!]
+  year: NullableStringFilter
 }
 
 input AlbumWhereUniqueInput {
@@ -13,14 +110,145 @@ input AlbumWhereUniqueInput {
 }
 
 type Artist {
+  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, skip: Int): [Album!]!
   id: Int!
   name: String!
   url: String
 }
 
-type ArtistAlbum
+input ArtistCreateInput {
+  albums: AlbumCreateManyWithoutArtistInput
+  name: String!
+  url: String
+}
+
+input ArtistCreateOneWithoutAlbumsInput {
+  connect: ArtistWhereUniqueInput
+  create: ArtistCreateWithoutAlbumsInput
+}
+
+input ArtistCreateWithoutAlbumsInput {
+  name: String!
+  url: String
+}
+
+input ArtistUpdateInput {
+  albums: AlbumUpdateManyWithoutArtistInput
+  id: Int
+  name: String
+  url: String
+}
+
+input ArtistUpdateManyMutationInput {
+  id: Int
+  name: String
+  url: String
+}
+
+input ArtistUpdateOneWithoutAlbumsInput {
+  connect: ArtistWhereUniqueInput
+  create: ArtistCreateWithoutAlbumsInput
+  delete: Boolean
+  disconnect: Boolean
+  update: ArtistUpdateWithoutAlbumsDataInput
+  upsert: ArtistUpsertWithoutAlbumsInput
+}
+
+input ArtistUpdateWithoutAlbumsDataInput {
+  id: Int
+  name: String
+  url: String
+}
+
+input ArtistUpsertWithoutAlbumsInput {
+  create: ArtistCreateWithoutAlbumsInput!
+  update: ArtistUpdateWithoutAlbumsDataInput!
+}
+
+input ArtistWhereInput {
+  albums: AlbumFilter
+  AND: [ArtistWhereInput!]
+  id: IntFilter
+  name: StringFilter
+  NOT: [ArtistWhereInput!]
+  OR: [ArtistWhereInput!]
+  url: NullableStringFilter
+}
+
+input ArtistWhereUniqueInput {
+  id: Int
+}
+
+type BatchPayload {
+  count: Int!
+}
+
+input IntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+type Mutation {
+  createOneAlbum(data: AlbumCreateInput!): Album!
+  createOneArtist(data: ArtistCreateInput!): Artist!
+  deleteManyAlbum(where: AlbumWhereInput): BatchPayload!
+  deleteManyArtist(where: ArtistWhereInput): BatchPayload!
+  deleteOneAlbum(where: AlbumWhereUniqueInput!): Album
+  deleteOneArtist(where: ArtistWhereUniqueInput!): Artist
+  updateManyAlbum(data: AlbumUpdateManyMutationInput!, where: AlbumWhereInput): BatchPayload!
+  updateManyArtist(data: ArtistUpdateManyMutationInput!, where: ArtistWhereInput): BatchPayload!
+  updateOneAlbum(data: AlbumUpdateInput!, where: AlbumWhereUniqueInput!): Album
+  updateOneArtist(data: ArtistUpdateInput!, where: ArtistWhereUniqueInput!): Artist
+}
+
+input NullableIntFilter {
+  equals: Int
+  gt: Int
+  gte: Int
+  in: [Int!]
+  lt: Int
+  lte: Int
+  not: Int
+  notIn: [Int!]
+}
+
+input NullableStringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
+}
 
 type Query {
-  albums: [Album!]!
-  artists: [Artist!]!
+  album(where: AlbumWhereUniqueInput!): Album
+  albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, skip: Int): [Album!]!
+  artist(where: ArtistWhereUniqueInput!): Artist
+  artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, skip: Int): [Artist!]!
+}
+
+input StringFilter {
+  contains: String
+  endsWith: String
+  equals: String
+  gt: String
+  gte: String
+  in: [String!]
+  lt: String
+  lte: String
+  not: String
+  notIn: [String!]
+  startsWith: String
 }
