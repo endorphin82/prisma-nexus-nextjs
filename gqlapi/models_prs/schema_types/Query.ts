@@ -9,7 +9,6 @@ export const Query = objectType({
     t.crud.artists()
 
 
-
     t.field('artistsByName', {
       type: 'Artist',
       list: true,
@@ -19,11 +18,5 @@ export const Query = objectType({
       resolve: (_, { name }, ctx) =>
         ctx.prisma.artist.findMany({ where: { name } })
     })
-
-    // t.list.field("artists", {
-    //   type: "Artist",
-    //   resolve: (_, args, ctx) =>
-    //     ctx.prisma.artist.findMany({})
-    // })
   }
 })
