@@ -8,16 +8,18 @@ datasource db {
 }
 
 model Album {
-  id          Int           @default(autoincrement()) @id
-  artist_id   Int?
-  name        String
-  year        String?
-  artist      Artist?      @relation(fields: [artist_id], references: [id])
+  artist_id Int?
+  id        Int     @default(autoincrement()) @id
+  name      String
+  year      String?
+  Artist    Artist? @relation("Album_artist_idToArtist", fields: [artist_id], references: [id])
+
+  @@index([artist_id], name: "Album_Artist_id_fk")
 }
 
 model Artist {
-  id          Int           @default(autoincrement()) @id
-  name        String
-  url         String?
-  albums      Album[]
+  id    Int     @default(autoincrement()) @id
+  name  String
+  url   String?
+  Album Album[] @relation("Album_artist_idToArtist")
 }

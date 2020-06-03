@@ -19,6 +19,7 @@ export const Query = objectType({
         })
 
 /*
+TODO: no work not array
     t.field('artistsByName', {
       type: 'Artist',
       args: {
