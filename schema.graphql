@@ -238,7 +238,7 @@ type Query {
   albumsByName(name: String!): [Album!]!
   artist(where: ArtistWhereUniqueInput!): Artist
   artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, skip: Int): [Artist!]!
-  artistsByName(name: String!): [Artist!]!
+  artistsByName(name: String!): Artist!
 }
 
 input StringFilter {

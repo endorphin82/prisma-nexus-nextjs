@@ -1,18 +1,22 @@
-import { useAlbums } from './Album/queries/__generated__/Albums'
+import { useArtists } from './Artist/queries/__generated__/Artists'
 
-export default function AlbumsList() {
-  const { loading, error, data } = useAlbums()
+export default function ArtistsList() {
+  const { loading, error, data } = useArtists()
   if (loading || !data) return <div>Loading</div>
-  const { albums } = data
-  console.log('______albums', albums)
+  const { artists } = data
+  console.log('______artists', artists)
   return (
     <section>
-      <h3>AlbumsList</h3>
+      <h3>ArtistsList</h3>
       <ul>
-        {albums.map((album, index) => (
-          <li key={album.id}>
-            <h4 onClick={() => console.log('test')}>{album.id}. {album.name} {album?.artist?.name}</h4>
-
+        {artists.map((artist, index) => (
+          <li key={artist.id}>
+            <h4 onClick={() => console.log('test')}>{artist.id}. {artist.name}</h4>
+            <ul>
+              {artist.albums.map((album, index) =>
+                <li key={album.id + index}>{album.name}{' '}{album.year} </li>
+              )}
+            </ul>
           </li>
         ))}
       </ul>
