@@ -5,6 +5,7 @@ import { Query } from './models_prs/schema_types/Query'
 import { Artist } from './models_prs/schema_types/Artist'
 import { Album } from './models_prs/schema_types/Album'
 import { Mutation } from './models_prs/schema_types/Mutation'
+import { ArtistByName } from './models_prs/schema_types/ArtistByName'
 
 // const ArtistAlbum = objectType({
 //   name: 'ArtistAlbum',
@@ -44,7 +45,7 @@ import { Mutation } from './models_prs/schema_types/Mutation'
 
 
 export const schema_prs = makeSchema({
-  types: [Query, Artist, Album, Mutation],
+  types: [Query, Artist, Album, Mutation, ArtistByName],
   plugins: [nexusPrismaPlugin()],
   outputs: {
     schema: __dirname + '/../schema.graphql',

@@ -116,6 +116,10 @@ type Artist {
   url: String
 }
 
+type ArtistByName {
+  name: String!
+}
+
 input ArtistCreateInput {
   albums: AlbumCreateManyWithoutArtistInput
   name: String!
@@ -236,6 +240,7 @@ type Query {
   album(where: AlbumWhereUniqueInput!): Album
   albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, skip: Int): [Album!]!
   artist(where: ArtistWhereUniqueInput!): Artist
+  artistByName(name: String!): [Artist!]!
   artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, skip: Int): [Artist!]!
 }
 
