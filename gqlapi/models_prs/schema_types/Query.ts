@@ -9,6 +9,7 @@ export const Query = objectType({
     t.crud.artists()
 
 
+
     t.field('artistsByName', {
       type: 'Artist',
       list: true,
