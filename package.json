@@ -16,9 +16,13 @@
     "migration_save:prisma": "prisma migrate save --experimental",
     "migration_UP:prisma": "prisma migrate up --experimental",
     "generate:nexus1": "ts-node --transpile-only gqlapi/schema_prs",
-    "generate:nexus2": "ts-node --transpile-only -P nexus.tsconfig.json gqlapi/schema_prs"
+    "generate:nexus2": "ts-node --transpile-only -P nexus.tsconfig.json gqlapi/schema_prs",
+    "generateHoocs": "graphql-codegen",
+    "watch-generate": "graphql-codegen --watch",
+    "clear": "find ./components -name \"__generated__\" -exec rm -rf '{}' +"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-rc.0",
     "@apollo/react-hooks": "^3.1.5",
     "@apollo/react-ssr": "^3.1.5",
     "@fullhuman/postcss-purgecss": "^2.2.0",
@@ -53,6 +57,11 @@
     "tailwindcss": "^1.4.6"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.15.0",
+    "@graphql-codegen/near-operation-file-preset": "^1.15.0",
+    "@graphql-codegen/typescript": "^1.15.0",
+    "@graphql-codegen/typescript-operations": "^1.15.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.15.0",
     "@prisma/cli": "^2.0.0-beta.5",
     "@types/node": "^14.0.1",
     "@types/react": "^16.9.35",

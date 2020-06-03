@@ -7,6 +7,7 @@ import Date from "../components/date"
 import { GetStaticProps, GetServerSideProps } from "next"
 import AlbumsList from "../components/AlbumsList"
 import { withApollo } from "../lib/apollo"
+import ArtistsList from '../components/ArtistsList'
 
 const Home = ({ allPostsData }: {
   allPostsData: {
@@ -43,7 +44,12 @@ const Home = ({ allPostsData }: {
       {/*    ))}*/}
       {/*  </ul>*/}
       {/*</section>*/}
+      <div style={{display: "flex"}}>
+
+      <ArtistsList/>
+
       <AlbumsList/>
+      </div>
     </Layout>
   )
 }

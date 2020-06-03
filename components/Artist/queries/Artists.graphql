@@ -1,0 +1,12 @@
+query Artists{
+    artists{
+        id
+        name
+        url
+        albums{
+            id
+            name
+            year
+        }
+    }
+}

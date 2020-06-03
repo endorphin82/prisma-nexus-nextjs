@@ -1,0 +1,27 @@
+schema: http://localhost:3002/api/graphql
+documents: 'components/**/*.graphql'
+generates:
+  components/__generated__/types.ts:
+    - typescript
+  components/:
+    preset: near-operation-file
+    presetConfig:
+      folder: __generated__
+      extension: .tsx
+      baseTypesPath: __generated__/types.ts
+    schema:
+      - './components/**/*.graphql'
+      - '!*.generated.graphql'
+    plugins:
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      namingConvention: keep
+      nonOptionalTypename: true
+      dedupeOperationSuffix: true
+      omitOperationSuffix: true
+      withComponent: false
+      withHooks: true
+      withHOC: false
+      reactApolloVersion: 3
+      apolloReactHooksImportFrom: '@apollo/react-hooks'
