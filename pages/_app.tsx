@@ -1,6 +1,9 @@
-import { AppProps } from "next/app"
-import "../styles/global.css"
+import { AppProps } from 'next/app'
+import '../styles/global.css'
+import { withApollo } from '../lib/apollo'
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />
 }
+
+export default withApollo({ ssr: true })(App)

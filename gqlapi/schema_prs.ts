@@ -1,5 +1,5 @@
 import { nexusPrismaPlugin } from 'nexus-prisma'
-import { makeSchema, objectType } from '@nexus/schema'
+import { makeSchema } from '@nexus/schema'
 import { Context } from '../prisma/context'
 import { Query } from './models_prs/schema_types/Query'
 import { Artist } from './models_prs/schema_types/Artist'

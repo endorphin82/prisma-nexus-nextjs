@@ -7,32 +7,55 @@ export const Query = objectType({
     t.crud.albums()
     t.crud.artist()
     t.crud.artists()
+    /*
+                t.field('artistsByName', {
+                  type: 'Artist',
+                  list: true,
+                  args: {
+                    name: stringArg({ required: true })
+                  },
+                  resolve: (_, { name }, ctx) =>
+                    ctx.prisma.artist.findMany({wher { name } })
+                })
+ */
+        // TODO: no work not array https://github.com/graphql-nexus/nexus-schema-plugin-prisma/blob/master/examples/blog/src/schema/Query.ts
 
-        t.field('artistsByName', {
-          type: 'Artist',
-          list: true,
-          args: {
-            name: stringArg({ required: true })
-          },
-          resolve: (_, { name }, ctx) =>
-            ctx.prisma.artist.findMany({ where: { name } })
-        })
 
-/*
     t.field('artistsByName', {
       type: 'Artist',
       args: {
         name: stringArg({ required: true })
       },
-      resolve: (_, { name }, ctx) =>
-        ctx.prisma.artist.findMany({ where: { name } }).then(result => {
-          if (result === null) {
-            throw new Error(`No blog with id of "${name}"`)
-          }
-          return result
-        })
+      resolve(_root, args, ctx) {
+        return ctx.prisma.artist
+          .findOne({
+            where: {
+              name: args.name
+            }
+          })
+          .then(result => {
+            if (result === null) {
+              throw new Error(`No blog with id of "${args.name}"`)
+            }
+            return result
+          })
+      }
     })
-*/
+
+    // t.field('artistsByName', {
+    //   type: 'Artist',
+    //   args: {
+    //     name: stringArg({ required: true })
+    //   },
+    //   resolve: (_, { name }, ctx) =>
+    //     ctx.prisma.artist.findMany({ where: { name } }).then(result => {
+    //       if (result === null) {
+    //         throw new Error(`No blog with id of "${name}"`)
+    //       }
+    //       return result
+    //     })
+    // })
+
 
     t.field('albumsByName', {
       type: 'Album',

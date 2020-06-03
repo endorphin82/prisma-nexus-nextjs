@@ -76,4 +76,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 */
 
-export default withApollo({ ssr: true })(Home)
+export default Home

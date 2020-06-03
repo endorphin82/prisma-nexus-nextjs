@@ -1,0 +1,12 @@
+query Album($where: AlbumWhereUniqueInput!){
+    album(where: $where){
+        id
+        name
+        year
+        artist{
+            id
+            name
+            url
+        }
+    }
+}
