@@ -116,10 +116,6 @@ type Artist {
   url: String
 }
 
-type ArtistByName {
-  name: String!
-}
-
 input ArtistCreateInput {
   albums: AlbumCreateManyWithoutArtistInput
   name: String!
@@ -239,6 +235,7 @@ input NullableStringFilter {
 type Query {
   album(where: AlbumWhereUniqueInput!): Album
   albums(after: AlbumWhereUniqueInput, before: AlbumWhereUniqueInput, first: Int, last: Int, skip: Int): [Album!]!
+  albumsByName(name: String!): [Album!]!
   artist(where: ArtistWhereUniqueInput!): Artist
   artists(after: ArtistWhereUniqueInput, before: ArtistWhereUniqueInput, first: Int, last: Int, skip: Int): [Artist!]!
   artistsByName(name: String!): [Artist!]!
