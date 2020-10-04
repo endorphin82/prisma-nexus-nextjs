@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useAlbums } from './Album/queries/__generated__/Albums'
 
 export default function AlbumsList() {
@@ -11,8 +12,9 @@ export default function AlbumsList() {
       <ul>
         {albums.map((album, index) => (
           <li key={album.id}>
+            <Link href="/album/[id]" as={`/album/${album.id}`}><a >
             <h4 onClick={() => console.log('test')}>{album.id}. {album.name} {album?.artist?.name}</h4>
-
+              </a></Link>
           </li>
         ))}
       </ul>
